@@ -39,7 +39,7 @@ function conformance(ast, reworkInstance) {
   }
 
   var componentName = initialComment.match(RE_DIRECTIVE)[1].trim();
-  var isStrict = initialComment.match(RE_DIRECTIVE)[2] === 'use strict';
+  var isStrict = true; // initialComment.match(RE_DIRECTIVE)[2] === 'use strict';
   var rules = getSimpleRules(ast.rules);
 
   validateRules(rules);

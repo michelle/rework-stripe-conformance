@@ -1,7 +1,7 @@
 {
-  "name": "rework-suit-conformance",
-  "version": "0.3.0",
-  "description": "SUIT CSS component conformance plugin for Rework",
+  "name": "rework-stripe-conformance",
+  "version": "0.0.1",
+  "description": "Stripe CSS conformance forked from SUIT CSS component conformance plugin for Rework",
   "files": [
     "index.js",
     "lib/*"
@@ -10,6 +10,7 @@
     "css",
     "rework",
     "suit",
+    "stripe",
     "conformance",
     "test",
     "lint"
@@ -22,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/suitcss/rework-suit-conformance.git"
+    "url": "git://github.com/michelle/rework-stripe-conformance.git"
   },
   "scripts": {
     "test": "mocha --no-colors",
