@@ -18,7 +18,8 @@ module.exports = conformance;
  * Constants
  */
 
-var RE_DIRECTIVE = /\* @define ([A-Z][a-zA-Z]+)(?:; (use strict))?\s*/;
+var RE_DIRECTIVE = /@define ([A-Z][a-zA-Z]+)/;
+var COMPOSITION_RE_DIRECTIVE = /@compose (([A-Z][a-zA-Z]+,?[\s]*)+)/;
 
 /**
  * @param {Object} ast Rework AST
@@ -39,11 +40,15 @@ function conformance(ast, reworkInstance) {
   }
 
   var componentName = initialComment.match(RE_DIRECTIVE)[1].trim();
+  var composedComponents;
+  if (initialComment.match(COMPOSITION_RE_DIRECTIVE)) {
+    composedComponents = initialComment.match(COMPOSITION_RE_DIRECTIVE)[1].trim().split(/(,\s*)|\s+/g);
+  }
   var isStrict = true; // initialComment.match(RE_DIRECTIVE)[2] === 'use strict';
   var rules = getSimpleRules(ast.rules);
 
   validateRules(rules);
-  validateSelectors(rules, componentName, isStrict);
+  validateSelectors(rules, componentName, composedComponents);
   validateCustomProperties(rules, componentName);
 }
 

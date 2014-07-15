@@ -1,0 +1,24 @@
+/**
+ * @define StrictValidRules
+ * @compose ValidComposition
+ */
+
+.StrictValidRules {
+  color: green;
+}
+
+.StrictValidRules.is-active, .StrictValidRules %ValidComposition {
+  color: green;
+}
+
+.StrictValidRules .StrictValidRules--modifier %ValidComposition--modifier {
+  color: green;
+}
+
+.StrictValidRules .StrictValidRules--modifier %ValidComposition--modifier.is-active {
+  color: green;
+}
+
+.StrictValidRules .StrictValidRules--modifier .ValidComposition-descendant.is-active {
+  color: green;
+}
