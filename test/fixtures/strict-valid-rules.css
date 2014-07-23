@@ -11,3 +11,19 @@
 .StrictValidRules .StrictValidRules--modifier {
   color: green;
 }
+
+.StrictValidRules > div {
+  color: green;
+}
+
+.StrictValidRules > div.is-active {
+  color: green;
+}
+
+%StrictValidRules {
+  color: red;
+}
+
+.StrictValidRules:not(.is-active) {
+  color: blue;
+}

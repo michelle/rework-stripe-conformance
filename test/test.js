@@ -54,6 +54,7 @@ describe('linting', function () {
     it('must contain only contain valid component classes in selectors', function () {
       assertSuccess('strict-valid-rules');
       assertFailure('strict-invalid-selector');
+      assertFailure('another-strict-invalid-selector');
     });
   });
 
