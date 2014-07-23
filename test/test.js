@@ -55,6 +55,7 @@ describe('linting', function () {
       assertSuccess('strict-valid-rules');
       assertFailure('strict-invalid-selector');
       assertFailure('another-strict-invalid-selector');
+      assertFailure('yet-another-strict-invalid-selector');
     });
   });
 

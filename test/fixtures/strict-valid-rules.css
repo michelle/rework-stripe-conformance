@@ -12,16 +12,8 @@
   color: green;
 }
 
-.StrictValidRules > div {
+ul.StrictValidRules > li {
   color: green;
-}
-
-.StrictValidRules > div.is-active {
-  color: green;
-}
-
-.is-active + .StrictValidRules {
-  color: yellow;
 }
 
 %StrictValidRules {

@@ -1,5 +1,5 @@
 /** @define StrictInvalidSelector; use strict */
 
-.StrictInvalidSelector .Another {
+.StrictInvalidSelector > div.is-active {
   color: green;
 }
