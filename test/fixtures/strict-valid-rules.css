@@ -20,6 +20,10 @@
   color: green;
 }
 
+.is-active + .StrictValidRules {
+  color: yellow;
+}
+
 %StrictValidRules {
   color: red;
 }
