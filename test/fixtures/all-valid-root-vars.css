@@ -4,3 +4,8 @@
   --ValidRootVars-background: green;
   --color-ValidRootVars: green;
 }
+
+:root {
+  --valid-root-vars-background: green;
+  --valid-root-vars-background--not-green: blue;
+}

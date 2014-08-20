@@ -1,0 +1,6 @@
+/** @define StrictInvalidSelector; use strict */
+
+.is-active + .YetAnotherStrictInvalidSelector {
+  color: yellow;
+}
+
