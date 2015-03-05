@@ -1,5 +1,5 @@
 /** @define AnotherStrictInvalidSelector; use strict */
 
-.AnotherStrictInvalidSelector .another {
+.AnotherStrictInvalidSelector.another {
   color: green;
 }
