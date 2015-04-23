@@ -22,3 +22,7 @@
 .StrictValidRules .StrictValidRules--modifier .ValidComposition-descendant.is-active {
   color: green;
 }
+
+.ValidComposition-parent--modifier .StrictValidRules--modifier {
+  color: red;
+}
