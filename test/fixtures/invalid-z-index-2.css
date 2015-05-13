@@ -1,0 +1,6 @@
+/** @define InvalidZIndexTwo; use strict */
+
+.InvalidZIndexTwo {
+  --this-has-the-substring-var-but-is-not-a-variable: 2;
+  z-index: --this-has-the-substring-var-but-is-not-a-variable;
+}

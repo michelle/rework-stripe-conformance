@@ -7,6 +7,7 @@
 var validateCustomProperties = require('./lib/validate-properties');
 var validateSelectors = require('./lib/validate-selectors');
 var validateRules = require('./lib/validate-rules');
+var validateZIndices = require('./lib/validate-z-indices');
 
 /**
  * Module exports
@@ -50,6 +51,7 @@ function conformance(ast, reworkInstance) {
   validateRules(rules);
   validateSelectors(rules, componentName, composedComponents);
   validateCustomProperties(rules, componentName);
+  validateZIndices(rules);
 }
 
 /**

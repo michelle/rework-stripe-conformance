@@ -15,11 +15,11 @@ function assertSuccess(fixture) {
   expect(result).not.to.Throw();
 }
 
-function assertFailure(fixture) {
+function assertFailure(fixture, expectedFailure) {
   var result = function () {
     processFixture(fixture);
   };
-  expect(result).to.Throw();
+  expect(result).to.Throw(expectedFailure);
 }
 
 describe('linting', function () {
@@ -62,6 +62,14 @@ describe('linting', function () {
   describe('a css file that uses the strict `@define` and `@compose` notation', function () {
     it('must contain only contain valid component and composition classes in selectors', function () {
       assertSuccess('strict-compose-rules');
+    });
+  });
+
+  describe('z-index values', function () {
+    it('must contain a variable', function () {
+      assertFailure('invalid-z-index', /Invalid z-index/);
+      assertFailure('invalid-z-index-2', /Invalid z-index/);
+      assertSuccess('valid-z-indices');
     });
   });
 });
