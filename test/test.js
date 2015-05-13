@@ -23,9 +23,16 @@ function assertFailure(fixture, expectedFailure) {
 }
 
 describe('linting', function () {
-  describe('a CSS file that lacks the `@define` notation', function () {
+  describe('a CSS file that lacks the `@define` and `@app` notation', function () {
     it('must be ignored', function () {
       assertSuccess('all-ignore');
+    });
+  });
+
+  describe('a CSS file that uses the `@app` notation', function() {
+    it('checks z-indices', function() {
+      assertFailure('invalid-z-index-app');
+      assertSuccess('valid-z-index-app');
     });
   });
 

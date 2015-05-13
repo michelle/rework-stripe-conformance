@@ -1,0 +1,5 @@
+/** @app; */
+
+.body {
+  z-index: var(--some-var);
+}
