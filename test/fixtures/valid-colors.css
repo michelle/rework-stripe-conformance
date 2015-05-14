@@ -1,0 +1,8 @@
+/** @app */
+
+.cow {
+  content: "red ";
+  background-color: var(--black);
+  color: var(--purple);
+  color: rgba(var(--purple), 0.4);
+}

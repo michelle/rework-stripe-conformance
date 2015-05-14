@@ -79,4 +79,13 @@ describe('linting', function () {
       assertSuccess('valid-z-indices');
     });
   });
+
+  describe('color values', function () {
+    it('must be defined by variable', function () {
+      assertFailure('invalid-color-hex3', /Invalid color/);
+      assertFailure('invalid-color-hex6', /Invalid color/);
+      assertFailure('invalid-color-paren', /Invalid color/);
+      assertSuccess('valid-colors');
+    });
+  });
 });

@@ -8,6 +8,7 @@ var validateCustomProperties = require('./lib/validate-properties');
 var validateSelectors = require('./lib/validate-selectors');
 var validateRules = require('./lib/validate-rules');
 var validateZIndices = require('./lib/validate-z-indices');
+var validateColors = require('./lib/validate-colors');
 
 /**
  * Module exports
@@ -104,6 +105,7 @@ function getSimpleRules(rules) {
 function runBaseTests(rules) {
   validateRules(rules);
   validateZIndices(rules);
+  validateColors(rules);
 }
 
 /**
