@@ -1,0 +1,10 @@
+/** @define ValidZIndices; @compose ValidZIndices */
+
+.ValidZIndices {
+  --background: 0;
+  z-index: var(--background);
+}
+
+@ValidZIndices--plus-one {
+  z-index: calc(var(--background) + 1);
+}

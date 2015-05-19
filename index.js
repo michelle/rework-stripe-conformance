@@ -7,6 +7,7 @@
 var validateCustomProperties = require('./lib/validate-properties');
 var validateSelectors = require('./lib/validate-selectors');
 var validateRules = require('./lib/validate-rules');
+var validateZIndices = require('./lib/validate-z-indices');
 
 /**
  * Module exports
@@ -28,28 +29,49 @@ var COMPOSITION_RE_DIRECTIVE = /@compose (([A-Z][a-zA-Z]+,?[\s]*)+)/;
 
 function conformance(ast, reworkInstance) {
   var initialComment = ast.rules[0].comment;
-  var isDefinition = (initialComment && initialComment.match(/@define/));
-  var isComponent = (initialComment && initialComment.match(RE_DIRECTIVE));
-  if (!isDefinition) { return; }
-  if (isDefinition && !isComponent) {
-    console.warn(
-      'WARNING: invalid component name in definition /*' + initialComment + '*/.',
-      'Component names must be pascal-case, e.g., ComponentName.'
-    );
+
+  if (!initialComment) {
     return;
   }
 
-  var componentName = initialComment.match(RE_DIRECTIVE)[1].trim();
-  var composedComponents;
-  if (initialComment.match(COMPOSITION_RE_DIRECTIVE)) {
-    composedComponents = initialComment.match(COMPOSITION_RE_DIRECTIVE)[1].trim().split(/(,\s*)|\s+/g);
-  }
-  var isStrict = true; // initialComment.match(RE_DIRECTIVE)[2] === 'use strict';
+  var isApp = initialComment.match(/@app/);
+  var isComponent = initialComment.match(RE_DIRECTIVE);
+  var isDefinition = initialComment.match(/@define/);
+  var shouldRunBaseTests = isApp || isComponent;
   var rules = getSimpleRules(ast.rules);
 
-  validateRules(rules);
-  validateSelectors(rules, componentName, composedComponents);
-  validateCustomProperties(rules, componentName);
+  if (shouldRunBaseTests) {
+    runBaseTests(rules);
+  }
+
+  if (isDefinition) {
+    if (isApp) {
+      console.warn(
+        'WARNING: conflicting directives in header /*' + initialComment + '*/.',
+        'Use the @app directive in CSS files that should be checked for style, but that do not ' +
+        'represent a single component. A CSS file must either describe a component or be part of an ' +
+        'app, but cannot be both.'
+      );
+      isApp = false;
+    }
+
+    if (isComponent) {
+      var componentName = initialComment.match(RE_DIRECTIVE)[1].trim();
+      var composedComponents;
+      if (initialComment.match(COMPOSITION_RE_DIRECTIVE)) {
+        composedComponents = initialComment.match(COMPOSITION_RE_DIRECTIVE)[1].trim().split(/(,\s*)|\s+/g);
+      }
+      var isStrict = true; // initialComment.match(RE_DIRECTIVE)[2] === 'use strict';
+
+      runComponentTests(rules, componentName, composedComponents);
+    } else {
+      console.warn(
+        'WARNING: invalid component name in definition /*' + initialComment + '*/.',
+        'Component names must be pascal-case, e.g., ComponentName.'
+      );
+      return;
+    }
+  }
 }
 
 /**
@@ -70,4 +92,28 @@ function getSimpleRules(rules) {
     }
   });
   return simpleRules;
+}
+
+/**
+ * Runs tests that applies to components and apps
+ *
+ * @param {Object} rules Rules from Rework AST
+ * @throws Error when rules contain an invalid entry
+ */
+
+function runBaseTests(rules) {
+  validateRules(rules);
+  validateZIndices(rules);
+}
+
+/**
+ * Runs test that apply to components but not to apps
+ *
+ * @param {Object} rules Rules from Rework AST
+ * @param {string} componentName The PascalCase name of the component
+ * @param {Array<string>} composedComponents The PascalCase names of composed components
+ */
+function runComponentTests(rules, componentName, composedComponents) {
+  validateSelectors(rules, componentName, composedComponents);
+  validateCustomProperties(rules, componentName);
 }
