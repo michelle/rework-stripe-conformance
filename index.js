@@ -88,7 +88,7 @@ function getSimpleRules(rules) {
     if (rule.rules) {
       simpleRules = simpleRules.concat(getSimpleRules(rule.rules));
     }
-    if (rule.type == 'rule') {
+    if (rule.type === 'rule') {
       simpleRules.push(rule);
     }
   });

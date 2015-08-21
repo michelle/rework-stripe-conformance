@@ -1,0 +1,4 @@
+/** @define InvalidRootColor; use strict */
+:root {
+  --InvalidRootColor-bad-color: rgba(0, 0, 0, 0);
+}

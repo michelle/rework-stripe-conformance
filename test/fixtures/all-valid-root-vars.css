@@ -3,6 +3,7 @@
 :root {
   --ValidRootVars-background: green;
   --color-ValidRootVars: green;
+  --ValidRootVars-background--transparent: rgba(#000, 0.7);
 }
 
 :root {

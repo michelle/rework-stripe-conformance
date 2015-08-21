@@ -1,0 +1,4 @@
+/** @define InvalidRootColor; use strict */
+:root {
+  --InvalidRootColor-badder-color: hsla(120, 100%, 100%, 1);
+}
