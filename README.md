@@ -20,3 +20,8 @@ See [rework-suit-conformance](https://github.com/suitcss/rework-suit-conformance
 * Allow `%` selectors that *begin* with a class matching the defined
   `ComponentName`.
 
+## Rules
+
+### `:root`-specific
+
+- Use hex values (`rgba(#fff, 0)`) instead of RGB values in RGB/HSL(A) (`rgba(255, 255, 255, 0)`).
