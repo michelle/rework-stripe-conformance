@@ -93,7 +93,8 @@ describe('linting', function () {
 
   describe('unit identifiers', function() {
     it('must use unit identifiers only when necessary', function () {
-      assertFailure('invalid-unit-identifiers', /Invalid zero value/);
+      assertFailure('invalid-single-unit-identifiers', /Invalid zero value/);
+      assertFailure('invalid-multi-unit-identifiers', /Invalid zero value/);
       assertSuccess('valid-unit-identifiers');
     });
   });
