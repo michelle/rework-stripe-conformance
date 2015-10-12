@@ -1,0 +1,9 @@
+/** @define ValidUnitIdentifiers */
+
+.ValidUnitIdentifiers {
+  height: 20px;
+  line-height: 100em;
+  box-shadow: inset 0 1px 2px rgba(var(--color-black), 0);
+  margin: 0 1px 1px 1px;
+  width: calc(var(--width-box) + 0);
+}
